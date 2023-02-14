@@ -1,5 +1,10 @@
 import type { NextPage } from 'next';
+import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
+
+const NoSSR = dynamic(() => import('../../components/section1/NoSSR'), {
+  ssr: false,
+});
 
 const Example: NextPage = () => {
   const [data, setData] = useState(0);
@@ -16,6 +21,9 @@ const Example: NextPage = () => {
     <main>
       <h1>client-side data fetching</h1>
       <p>값: {data}</p>
+
+      <h1>no SSR</h1>
+      <NoSSR />
     </main>
   );
 };
